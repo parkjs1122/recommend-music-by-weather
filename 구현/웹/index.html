@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<title>K-means를 활용한 날씨 기반 음악 추천시스템</title>
+	<link rel="stylesheet" href="css/sliding-carousel.css" />
+	<link rel="stylesheet" href="css/default.css" />
+	<script src="js/jquery-1.7.min.js" type="text/javascript"></script>
+	<script src="js/jquery-slidingCarousel.js" type="text/javascript"></script>
+	<script src="js/default.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div class="loader"></div>
+	<div id="background">
+		<div id="top">
+			<h1>K-means를 활용한 날씨 기반 음악 추천시스템</h1>
+			<div style="width:100%; height:50px; margin:auto;" id="info_input">
+				<span class="tooltiptext">LastFM 아이디와 몇개의 곡을 추천받을지 입력해주세요.</span>
+				<input type="text" id="lastfm_id" placeholder="LastFM ID" value=""> <input type="text" placeholder="Top K" id="top_k" value=""><br />
+			</div>
+			<div id="check_weather">
+				<label class="container"><img src="images/rainy.png" width="70" alt="">
+					<span class="tooltiptext">강수량이 존재하는 날씨</span>
+					<input type="radio" name="weather" id="r1" value="rainy" checked>
+					<span class="checkmark"></span>
+				</label>
+				<label class="container"><img src="images/snowy.png" width="70" alt="">
+					<span class="tooltiptext">강설량이 존재하는 날씨</span>
+					<input type="radio" name="weather" id="r2" value="snowy">
+					<span class="checkmark"></span>
+				</label>
+				<label class="container"><img src="images/cold.png" width="70" alt="">
+					<span class="tooltiptext">최저 온도가 10도 이하인 날씨</span>
+					<input type="radio" name="weather" id="r3" value="cold">
+					<span class="checkmark"></span>
+				</label>
+				<label class="container"> <img src="images/hot.png" width="70" alt="">
+					<span class="tooltiptext">최고온도가 30도 이상인 날씨</span>
+					<input type="radio" name="weather" id="r4" value="hot">
+					<span class="checkmark"></span>
+				</label>
+				<label class="container"><img src="images/cool.png" width="70" alt="">
+					<span class="tooltiptext">최저온도가 10도 초과, 최고온도가 30도 미만인 날씨</span>
+					<input type="radio" name="weather" id="r5" value="cool">
+					<span class="checkmark"></span>
+				</label>
+				<input type="button" value="확인" class="btn info" style="margin-left: 30px;" onclick="if(document.getElementById('lastfm_id').value != '' && document.getElementById('top_k').value != '' ){if(loading == 0){getRecommendations(document.getElementById('lastfm_id').value);}else{alert('현재 다른 응답을 기다리고 있습니다.');}}else{alert('아이디와 Top-K 값을 입력해주세요.');}"><br />
+			</div>
+		</div>
+		<div id="center">
+			<h2>추천 결과</h2>
+			<div id="myBtnContainer" style="visibility: hidden; height:0;">
+				<button name="btn_tab" class="btn_tab active" onclick="filterSelection('all')"> 모두</button>
+				<button name="btn_tab" class="btn_tab" onclick="filterSelection('today')"> 오늘</button>
+				<button name="btn_tab" class="btn_tab" onclick="filterSelection('tomm')"> 내일</button>
+				<button name="btn_tab" class="btn_tab" onclick="filterSelection('after_tomm')"> 모레</button>
+			</div>
+
+			<!-- Portfolio Gallery Grid -->
+			<div class="row" id="row">
+				
+				<!-- END GRID -->
+			</div>
+		</div>
+
+
+	</div>
+</body>
+
+</html>
